@@ -1,0 +1,79 @@
+--------
+Total Statistics
+--------
+Total Instructions: 10802935199
+Total Cycles: 16232972176
+IPC: 0.665493
+
+--------
+Single level Tlb hierarchy
+--------
+  Data Tlb:
+    Entries:          64
+    Page Size(B):   4096
+    Associativity:      4
+
+Latencies:    0  150
+Tlb-Sets:   16 - LRU - assoc:   4
+
+Tlb Stats:
+Tlb-Load-Hits:        2162537154   99.38%
+Tlb-Load-Misses:        13423163    0.62%
+Tlb-Load-Accesses:    2175960317  100.00%
+
+Tlb-Store-Hits:         557024317   99.95%
+Tlb-Store-Misses:          265653    0.05%
+Tlb-Store-Accesses:     557289970  100.00%
+
+Tlb-Total-Hits:        2719561471   99.50%
+Tlb-Total-Misses:        13688816    0.50%
+Tlb-Total-Accesses:    2733250287  100.00%
+
+
+
+--------
+Two level Cache hierarchy
+--------
+  L1-Data Cache:
+    Size(KB):         128
+    Block Size(B):     64
+    Associativity:      8
+
+  L2-Data Cache:
+    Size(KB):        1024
+    Block Size(B):    128
+    Associativity:      8
+
+Latencies:    1   10  250
+L1-Sets:  256 - LRU - assoc:   8
+L2-Sets: 1024 - LRU - assoc:   8
+Store_allocation: Yes
+L2_inclusive: Yes
+L2_prefetching: No
+
+L1 Cache Stats:
+L1-Load-Hits:        2141515110   98.42%
+L1-Load-Misses:        34445207    1.58%
+L1-Load-Accesses:    2175960317  100.00%
+
+L1-Store-Hits:         554409248   99.48%
+L1-Store-Misses:         2880722    0.52%
+L1-Store-Accesses:     557289970  100.00%
+
+L1-Total-Hits:        2695924358   98.63%
+L1-Total-Misses:        37325929    1.37%
+L1-Total-Accesses:    2733250287  100.00%
+
+L2 Cache Stats:
+L2-Load-Hits:          33859513   98.30%
+L2-Load-Misses:          585694    1.70%
+L2-Load-Accesses:      34445207  100.00%
+
+L2-Store-Hits:           2385596   82.81%
+L2-Store-Misses:          495126   17.19%
+L2-Store-Accesses:       2880722  100.00%
+
+L2-Total-Hits:          36245109   97.10%
+L2-Total-Misses:         1080820    2.90%
+L2-Total-Accesses:      37325929  100.00%
+
