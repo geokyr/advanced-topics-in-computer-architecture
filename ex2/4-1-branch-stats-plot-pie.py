@@ -93,7 +93,7 @@ for outFile in os.listdir(outFilesDir):
     plt.show()
 
 print(instructions)
-plt.figure();
+plt.figure()
 fig, ax = plt.subplots()
 ax.grid(axis='x')
 ax.set_axisbelow(True)
