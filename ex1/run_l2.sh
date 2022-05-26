@@ -2,7 +2,7 @@
 
 ## Modify the following paths appropriately
 PARSEC_PATH=/home/george/adv-ca/parsec-3.0/
-PIN_EXE=/home/george/adv-ca/pin-3.22-98547-g7a303a835-gcc-linux/pin
+PIN_EXE=/home/george/adv-ca/pin-3.23-98579-gb15ab7903-gcc-linux/pin
 PIN_TOOL=/home/george/adv-ca/advcomparch-ex1-helpcode/pintool/obj-intel64/simulator.so
 
 CMDS_FILE=/home/george/adv-ca/parsec-3.0/parsec_workspace/cmds_simlarge.txt
