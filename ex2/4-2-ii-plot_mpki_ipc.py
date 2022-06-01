@@ -7,12 +7,12 @@ import numpy as np
 import os
 from scipy.stats import mstats
 
-## For nbit predictors
+outputDir = "/home/george/adv-ca/parsec-3.0/parsec_workspace/graphs/4-2-ii/"
+outFilesDir = "/home/george/adv-ca/parsec-3.0/parsec_workspace/outputs/4-2/"
+
 predictors_to_plot = [ "  Nbit-32K-1", "  Nbit-16K-2", "  Nbit-8K-4", "  2bitFSM"]
-outputDir = "/home/george/adv-ca/parsec-3.0/parsec_workspace/graphs/4-2ii/"
 mpki_Axis = []
 mpki_dict = {}
-outFilesDir = "/home/george/adv-ca/parsec-3.0/parsec_workspace/outputs/4-2/"
 
 for outFile in os.listdir(outFilesDir):
 	print("outFile", outFile)
@@ -29,13 +29,13 @@ for outFile in os.listdir(outFilesDir):
 	while line:
 		tokens = line.split()
 		if line.startswith("Total Instructions:"):
-			total_ins = long(tokens[2])
+			total_ins = int(tokens[2])
 		else:
 			for pred_prefix in predictors_to_plot:
 				if line.startswith(pred_prefix):
 					predictor_string = tokens[0].split(':')[0]
-					correct_predictions = long(tokens[1])
-					incorrect_predictions = long(tokens[2])
+					correct_predictions = int(tokens[1])
+					incorrect_predictions = int(tokens[2])
 					x_Axis.append(predictor_string)
 					val = (incorrect_predictions / (total_ins / 1000.0))
 					mpki_Axis.append(val)
@@ -46,7 +46,7 @@ for outFile in os.listdir(outFilesDir):
 	fig, ax1 = plt.subplots()
 	ax1.grid(True)
 
-	myorder = [2, 0, 1, 3] # Ad Hoc
+	myorder = [2, 0, 1, 3]
 	mpki_Axis = [mpki_Axis[i] for i in myorder]
 	x_Axis = [x_Axis[i] for i in myorder]
 
@@ -56,16 +56,15 @@ for outFile in os.listdir(outFilesDir):
 	ax1.set_xlim(-0.5, len(x_Axis) - 0.5)
 	ax1.set_ylim(min(mpki_Axis) - 0.05, max(mpki_Axis) + 0.05)
 	ax1.set_ylabel("$MPKI$")
-	line1 = ax1.plot(mpki_Axis, label="mpki", color="red",marker='x')
+	line1 = ax1.plot(mpki_Axis, label="mpki", color="red", marker='x')
 
 	plt.title("MPKI for " + title + " [Fixed Hardware 32K Bits]")
 
-	plt.savefig(outputDir + title.replace('.', '-') + '.png', bbox_inches="tight", frame=True, pad_inches=0.3)
+	plt.savefig(outputDir + title.replace('.', '-') + '.png', bbox_inches="tight", pad_inches=0.3)
 	plt.clf()
 	plt.cla()
 
 avg_mpk = []
-print(mpki_dict)
 for key in x_Axis:
 		avg_mpk.append(mstats.gmean(mpki_dict[key]))
 fig, ax1 = plt.subplots()
@@ -79,4 +78,4 @@ ax1.set_ylim(min(avg_mpk) - 0.05 * min(avg_mpk), max(avg_mpk) + 0.05 * max(avg_m
 plt.title("Geometric Average MPKI")
 ax1.set_ylabel("$MPKI$")
 line2 = ax1.plot(avg_mpk, label="Geometric Mean mpki", color="green",marker='o')
-plt.savefig(outputDir + 'mean.png', bbox_inches="tight", frame=True, pad_inches=0.3)
+plt.savefig(outputDir + 'mean.png', bbox_inches="tight", pad_inches=0.3)

@@ -1,15 +1,16 @@
 #!/usr/bin/env python
 
-import sys
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.stats import mstats
+import os
 
-## For nbit predictors
-predictors_to_plot = [ "  Static", "  BTFNT", "  Pentium", "  Nbit", "  Local", "  Global", "  Tournament", "  ALPHA"]
 outputDir = "/home/george/adv-ca/parsec-3.0/parsec_workspace/graphs/4-5/"
+outFilesDir = "/home/george/adv-ca/parsec-3.0/parsec_workspace/outputs/4-5/"
+
+predictors_to_plot = [ "  Static", "  BTFNT", "  Pentium", "  Nbit", "  Local", "  Global", "  Tournament", "  ALPHA"]
 
 def plot(outputDir, benchname, axes, sortit=True):
     fig, ax = plt.subplots(figsize=(9, 7))
@@ -49,7 +50,6 @@ def plot(outputDir, benchname, axes, sortit=True):
     ax.set_yticklabels([])
     ax.set_ylim(-0.5, bar_thickness*(combos_count+1)*len(benches))
     ax.set_xlim([0, maxval])
-    print(maxval)
     percentage = [str(x) for x in np.arange(0, maxval + 10, 10)]
     x_pos = np.arange(len(percentage))
     ax.set_xticks(10*x_pos)
@@ -60,23 +60,22 @@ def plot(outputDir, benchname, axes, sortit=True):
     plt.ylabel('Predictor')
 
     plt.title("Predictors comparison for " + benchname)
-    plt.savefig(outputDir +  benchname + '.png', bbox_inches="tight", frame=True, pad_inches=0.3)
+    plt.savefig(outputDir +  benchname + '.png', bbox_inches="tight", pad_inches=0.3)
     plt.cla()
     plt.clf()
 
 
 axes = dict()
-for outFile in sys.argv[1:]:
-    fp = open(outFile)
+for outFile in os.listdir(outFilesDir):
+    print("outFile", outFile)
+    fp = open(outFilesDir + outFile)
     curaxes = []
 
     benchfile = outFile.split('/')[-1]
     nametokens = benchfile.split('.')
     benchname = nametokens[0] + '.' + nametokens[1]
     benchname = benchname.replace(".", '-')
-    print(benchname)
     benches = []
-    print(benchname)
 
     line = fp.readline()
     while line:
@@ -91,7 +90,6 @@ for outFile in sys.argv[1:]:
                 combo = tokens[0]
                 tokens = tokens[1].split()
 
-                print(tokens)
                 correct = float(tokens[0])
                 incorrect = float(tokens[1])
                 missprediction_rate = incorrect / total_instructions * 1000
@@ -109,5 +107,3 @@ for label, vals in axes.items():
 plot(outputDir, 'mean', axes_tuple) 
 
 tups = sorted(axes_tuple, key=lambda tup: tup[1], reverse=False)
-for (t, p) in tups:
-    print(t)

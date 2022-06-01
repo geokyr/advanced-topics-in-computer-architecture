@@ -175,55 +175,47 @@ VOID InitPredictors()
     NbitPredictor *nbitPred = new NbitPredictor(15, 1); /*total memory 32K aka 2^15, so 1*2^15=32000*/
     branch_predictors.push_back(nbitPred);
 
-    nbitPred = new NbitPredictor(14, 2); /*total memory 32K aka 2^15, so 2*2^14=32000*/
-    branch_predictors.push_back(nbitPred);
-
     nbitPred = new NbitPredictor(13, 4); /*total memory 32K aka 2^15, so 4*2^13=32000*/
     branch_predictors.push_back(nbitPred);
 
-    nbitPred = new NbitPredictor(13, 4);
-    branch_predictors.push_back(nbitPred);
-
-    // /********* 4-3: BTB *********/
+    /********** 4-3 **********/
     // BTBPredictor *btb = new BTBPredictor(512, 1);
     // btb_predictors.push_back(btb);
 
-    // btb = new BTBPredictor(512, 2);
-    // btb_predictors.push_back(btb);
-
     // btb = new BTBPredictor(256, 2);
-    // btb_predictors.push_back(btb);
-    
-    // btb = new BTBPredictor(256, 4);
     // btb_predictors.push_back(btb);
 
     // btb = new BTBPredictor(128, 2);
     // btb_predictors.push_back(btb);
     
-    // btb = new BTBPredictor(128, 4);
-    // btb_predictors.push_back(btb);
-
     // btb = new BTBPredictor(64, 4);
     // btb_predictors.push_back(btb);
 
-    // btb = new BTBPredictor(64, 8);
+    // btb = new BTBPredictor(64, 2);
+    // btb_predictors.push_back(btb);
+    
+    // btb = new BTBPredictor(32, 4);
     // btb_predictors.push_back(btb);
 
+    // btb = new BTBPredictor(16, 4);
+    // btb_predictors.push_back(btb);
 
-    // /************ 4.5 ************/
+    // btb = new BTBPredictor(8, 8);
+    // btb_predictors.push_back(btb);
+
+    // /********** 4-5 **********/
     // BranchPredictor* bp = new StaticTakenPredictor();
     // branch_predictors.push_back(bp);
 
     // bp = new BTFNTPredictor();
     // branch_predictors.push_back(bp);
 
-    // bp = new NbitPredictor(13, 4);
+    // bp = new NbitPredictor(14, 2);
     // branch_predictors.push_back(bp);
     
     // /* Pentium-M predictor */
     // bp = new PentiumMBranchPredictor();
     // branch_predictors.push_back(bp);
-
 
     // /* PHT Hardware is fixed. 16K. Another 16K for BHT */
     // int pht_bits = 2;//2,4,4,9
@@ -233,7 +225,6 @@ VOID InitPredictors()
     // bp = new LocalHistoryPredictor(bht_entries, bht_bits, pht_index, pht_bits);
     // branch_predictors.push_back(bp);
 
-
     // /* Another 16K hardware */
     // pht_bits = 2;
     // bht_entries = 8*KILO; // 4096 entries
@@ -241,7 +232,6 @@ VOID InitPredictors()
     // pht_index = 11;
     // bp = new LocalHistoryPredictor(bht_entries, bht_bits, pht_index, pht_bits);
     // branch_predictors.push_back(bp);
-
 
     // /* GLOBAL PREDICTOR - PHT Hardware = 32 K*/
     // bht_bits = 4; //bhr //eixe 5
@@ -265,6 +255,9 @@ VOID InitPredictors()
     // pht_bits = 4; 
     // pht_index = 5;
     // bp = new GlobalHistoryPredictor(bht_bits, pht_index, pht_bits);
+    // branch_predictors.push_back(bp);
+
+    // bp = new AlphaPredictor();
     // branch_predictors.push_back(bp);
 
     // BranchPredictor *p0 = new NbitPredictor(13, 2); // 16K Overhead
@@ -296,10 +289,6 @@ VOID InitPredictors()
     // //p1 = new LocalHistoryPredictor(4*KILO, 2, 9, 4); // 8K BHT, 4*2K=8K PHT
     // //bp = new TournamentPredictor(1024, p0, p1);
     // //branch_predictors.push_back(bp);
-
-    // bp = new AlphaPredictor();
-    // branch_predictors.push_back(bp);
-
 }
 
 VOID InitRas()

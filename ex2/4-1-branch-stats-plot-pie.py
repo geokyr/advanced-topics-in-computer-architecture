@@ -6,11 +6,12 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
+outputDir = "/home/george/adv-ca/parsec-3.0/parsec_workspace/graphs/4-1/"
+outFilesDir = "/home/george/adv-ca/parsec-3.0/parsec_workspace/outputs/4-1/"
+
 total, conditionalNotTaken, conditionalTaken, unconditional, calls, returns = 0, 0, 0, 0, 0, 0
 instructions = []
 benches = []
-outputDir = "/home/george/adv-ca/parsec-3.0/parsec_workspace/graphs/4-1/"
-outFilesDir = "/home/george/adv-ca/parsec-3.0/parsec_workspace/outputs/4-1/"
 
 for outFile in os.listdir(outFilesDir):
     print("outFile", outFile)
@@ -48,12 +49,6 @@ for outFile in os.listdir(outFilesDir):
     returns = (returns / totalBranches) * 100
     instructions.append(total)
 
-    print(conditionalTaken)
-    print(conditionalNotTaken)
-    print(unconditional)
-    print(calls)
-    print(returns)
-
     labels = ['Conditional-Taken ('+"{:.2f}".format(conditionalTaken)+'%)',
         'Conditional-NotTaken ('+"{:.2f}".format(conditionalNotTaken)+'%)',
         'Unconditional ('+"{:.2f}".format(unconditional)+'%)',
@@ -66,9 +61,9 @@ for outFile in os.listdir(outFilesDir):
     ax = plt.subplot(111)
     plt.axis('equal')
 
-    radius = 1 
+    radius = 0.75
     colors = ['#173F5F','#ED553B', '#3CAEA3', '#20639B', '#F6D55C']
-    wedges, texts = plt.pie(sizes, radius=radius, colors=colors, wedgeprops=dict(width=1), startangle=180)
+    wedges, texts = plt.pie(sizes, radius=radius, colors=colors, wedgeprops=dict(width=0.4), startangle=180)
     bbox_props = dict(boxstyle="square,pad=0.1", fc="w", ec="k", lw=0.72)
     kw = dict(arrowprops=dict(arrowstyle="-"),
             bbox=bbox_props, zorder=0, va="center")
@@ -84,15 +79,13 @@ for outFile in os.listdir(outFilesDir):
     percentage = float(totalBranches)/total*100
     stats = 'Total Branches: ' + str(int(totalBranches)) + " - {:.2f}% ".format(percentage)  + "of total instructions"
     plt.title(stats, fontsize=12)
+    plt.suptitle(title, fontsize=16, fontweight="bold")
 
     box = ax.get_position()
-    # Put a legend to the right of the current axis
     ax.legend(wedges, labels, loc='center left', bbox_to_anchor=(1, 0.5))
 
-    plt.savefig(outputDir + title.replace('.', '-') + '.png', bbox_inches="tight", frame=True, pad_inches=0.3)
-    plt.show()
+    plt.savefig(outputDir + title.replace('.', '-') + '.png', bbox_inches="tight", pad_inches=0.3)
 
-print(instructions)
 plt.figure()
 fig, ax = plt.subplots()
 ax.grid(axis='x')
@@ -102,19 +95,18 @@ matplotlib.axes.Axes.ticklabel_format(ax, axis='x', style='sci', useMathText=Tru
 ax.spines['top'].set_visible(False)
 ax.spines['right'].set_visible(False)
 ax.spines['bottom'].set_visible(True)
-ax.spines['bottom'].set_color('k')
+ax.spines['bottom'].set_color('darkgray')
 ax.spines['left'].set_visible(True)
-ax.spines['left'].set_color('k')
+ax.spines['left'].set_color('darkgray')
 
 y_pos = np.arange(len(benches))
 
 matplotlib.axes.Axes.tick_params(ax, colors='dimgray')
-p = ax.barh(y_pos, instructions, height=0.4, align='center', color='k')
+p = ax.barh(y_pos, instructions, height=0.4, align='center', color='#29ccbb')
 ax.set_yticks(y_pos)
 ax.set_yticklabels(benches)
-ax.invert_yaxis()  # labels read top-to-bottom
-ax.set_xlabel('Total Instructions', color='k')
+ax.invert_yaxis()
+ax.set_xlabel('Total Instructions', color='dimgray')
 ax.set_title('Total Instructions', color='k')
 
-plt.show()
-plt.savefig(outputDir + "total.png",bbox_inches="tight", frame=True, pad_inches=0.3)
+plt.savefig(outputDir + "total.png",bbox_inches="tight", pad_inches=0.3)
