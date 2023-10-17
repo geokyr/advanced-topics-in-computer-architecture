@@ -2,6 +2,9 @@
 
 Lab Assignments for the [Advanced Topics in Computer Architecture](https://www.ece.ntua.gr/en/undergraduate/courses/3352) course, during the 8th semester of the School of Electrical and Computer Engineering at the National Technical University of Athens.
 
+## Lab Assignments
+A total of 3 Lab Assignments were completed, each one focusing on a different topic. These provided a hands-on experience and a deeper understanding of important and advanced topics in Computer Architecture. A brief description of each lab follows.
+
 ## Lab 01 - Memory Hierarchy
 
 The first lab was about utilizing the [PIN tool](https://www.intel.com/content/www/us/en/developer/articles/tool/pin-a-dynamic-binary-instrumentation-tool.html) to explore the impact of memory hierarchy parameters on application performance. The [PARSEC benchmarks](https://parsec.cs.princeton.edu/) were also utilized. The primary goal was to become proficient with the PIN tool and the experimental methods for meaningful conclusions. Additionally, it was essential to develop skills in analyzing memory parameter effects on application performance, yielding valuable insights into memory hierarchy performance. 
