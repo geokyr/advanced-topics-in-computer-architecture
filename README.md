@@ -1,4 +1,4 @@
-# ece-ntua-advanced-computer-architecture
+# ece-ntua-advanced-topics-in-computer-architecture
 
 Lab Assignments for the [Advanced Topics in Computer Architecture](https://www.ece.ntua.gr/en/undergraduate/courses/3352) course, during the 8th semester of the School of Electrical and Computer Engineering at the National Technical University of Athens.
 
