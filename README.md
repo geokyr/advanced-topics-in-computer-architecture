@@ -1,9 +1,9 @@
-# ece-ntua-advanced-topics-in-computer-architecture
+# advanced-topics-in-computer-architecture
 
 Lab Assignments for the [Advanced Topics in Computer Architecture](https://www.ece.ntua.gr/en/undergraduate/courses/3352) course, during the 8th semester of the School of Electrical and Computer Engineering at the National Technical University of Athens.
 
 ## Lab Assignments
-A total of 3 Lab Assignments were completed, each one focusing on a different topic. These provided a hands-on experience and a deeper understanding of important advanced topics in computer architecture. A detailed description of each lab follows.
+A total of 3 lab assignments were completed, each one focusing on a different topic. These provided a hands-on experience and a deeper understanding of important advanced topics in computer architecture. A detailed description of each lab follows.
 
 ## Lab 01 - Memory Hierarchy
 
